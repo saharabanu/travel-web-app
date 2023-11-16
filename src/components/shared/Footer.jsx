@@ -9,7 +9,7 @@ const Footer = () => {
 <footer className="bg-black text-white">
 
 
-  <div className="mx-auto max-w-6xl px-6 py-16 sm:px-6 lg:px-16 container">
+  <div className="mx-auto max-w-6xl px-6 py-16 sm:px-6 lg:px-6 container">
     {/* <div className="lg:flex lg:items-start lg:gap-1"> */}
     
 

@@ -13,7 +13,7 @@ const Header = () => {
     // You can optionally render a loading indicator here
     return <div>Loading...</div>;
   }
-  console.log(user);
+  // console.log(user);
   const logout = () => {
     signOut(auth);
     navigate('/login')
@@ -98,6 +98,7 @@ const Header = () => {
             </ul>
 
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">
+            {/* <input type="text" placeholder="Search" className="bg-gray-500"/> */}
             <a
             href="/login"
             className="px-4 py-2 text-black   "
@@ -116,11 +117,12 @@ const Header = () => {
           >
             <img src={avatar} alt="avatar"  className="w-10 " />
           </a> */}
+          {/* <input type="text" placeholder="Search" className="bg-gray-200 px-2 py-1 rounded outline-none"/> */}
           {
-            user ? <>
-                 <p>{user?.displayName}</p>
-                 <button onClick={logout} className="border">Log out</button>
-            </> :
+            user ? <div className="flex items-center">
+                 <p className="pr-5">{user?.displayName}</p>
+                 <button onClick={logout} className="border bg-yellow-500 px-2 py-1 rounded">Log out</button>
+            </div> :
             <a
             href="/login"
             className="px-4 py-2 text-black   "
