@@ -17,7 +17,7 @@ const ChooseUs = () => {
           <h2 className="font-bold text-2xl py-5">
             Why Select Us For <br /> your Vacation
           </h2>
-          <div className="space-y-1 text-sm">
+          <div className="space-y-2 text-sm">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum eius nemo sapiente
               ratione iure accusamus minima, tempora assumenda saepe iusto distinctio esse nihil
