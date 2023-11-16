@@ -1,8 +1,11 @@
 import './App.css'
+
+import MainLayout from './layouts/MainLayout'
 const App = () => {
   return (
     <div>
-      <h2>Hello</h2>
+      <MainLayout/>
+      
     </div>
   )
 }
