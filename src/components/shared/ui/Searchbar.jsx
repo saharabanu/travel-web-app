@@ -2,9 +2,9 @@
 
 const Searchbar = () => {
   return (
-    <div className="bg-white  m-auto lg:max-w-5xl  container mt-[-150px]  p-10 rounded-lg z-20 ">
+    <div className="bg-white  m-auto lg:max-w-5xl  container lg:mt-[-150px] sm:mt-[-290px]  p-10 rounded-lg z-20 sm:space-y-3 sm:max-w-8xl">
        
-       <div className=" lg:flex md:flex-row justify-between items-center">
+       <div className=" lg:flex md:flex-row justify-between items-center  sm:space-y-3">
        <div>
         <label >Destination</label>
         <input type="text" placeholder="Where to go" className=" border rounded text-black outline-none px-2 py-1"/>

@@ -4,7 +4,7 @@ import Searchbar from './Searchbar';
 
 const Banner = () => {
   return (
-    <div className="bg-blue-900 pb-10">
+    <div className="bg-blue-900 pb-10 relative">
       <div className="container lg:flex flex-col md:flex-row justify-between items-center px-6 md:px-20 pt-10 ">
         <div className="md:pr-10 md:w-1/2 space-y-3">
           <h4 className="text-yellow-400 font-bold text-2xl" style={{ fontFamily: "Dancing Script" }}>Explore The</h4>
@@ -20,7 +20,9 @@ const Banner = () => {
         </div>
       </div>
 
+      <div className='absolute pl-10'>
       <Searchbar/>
+      </div>
     </div>
   );
 };
