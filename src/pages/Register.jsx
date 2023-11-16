@@ -1,23 +1,41 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../firebase/firebase.auth';
+import { updateProfile } from 'firebase/auth';
+import toast from "react-hot-toast";
 
 
-const Register  = () => {
-  const { register, handleSubmit} = useForm();
+const Register = () => {
+  const { register, handleSubmit } = useForm();
+  const [createUserWithEmailAndPassword] =
+  useCreateUserWithEmailAndPassword(auth);
 
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+  const onSubmit = async (data) => {
+    const { name, email, password } = data;
+
+    try {
+      // Create user
+      const authUser = await createUserWithEmailAndPassword(email, password);
+
+      // Set display name
+      await updateProfile(authUser.user, {
+        displayName: name,
+      });
+
+      toast.success("User registered successfully:", authUser);
+    } catch (error) {
+      toast.error("This email is already registered:");
+    }
+  };
   return (
     <>
- <div className="container m-auto max-w-lg ">
-        
+      <div className="container m-auto max-w-lg ">
         <div className="block max-w-lg rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]  mt-10">
-        <h2 className="text-center text-xl pb-5 font-bold">Please Register</h2>
+          <h2 className="text-center text-xl pb-5 font-bold">Please Register</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-           
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
                 {...register("name")}
@@ -28,7 +46,6 @@ const Register  = () => {
                 id="exampleInput7"
                 placeholder="Your Name"
               />
-              
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
@@ -40,9 +57,8 @@ const Register  = () => {
                 id="exampleInput7"
                 placeholder="Your Email"
               />
-              
             </div>
-           
+
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
                 {...register("password")}
@@ -53,11 +69,8 @@ const Register  = () => {
                 id="exampleInput7"
                 placeholder="Password"
               />
-              
             </div>
-  
-            
-  
+
             <input
               type="submit"
               value="Register"
@@ -66,13 +79,18 @@ const Register  = () => {
               data-te-ripple-color="light"
             />
           </form>
-          <br /><br />
-          <p className="text-lg">Already Have an Account ? Please <Link to="/login" className="text-blue-700">Login</Link></p>
+          <br />
+          <br />
+          <p className="text-lg">
+            Already Have an Account ? Please{" "}
+            <Link to="/login" className="text-blue-700">
+              Login
+            </Link>
+          </p>
         </div>
-        </div>
-
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Register 
+export default Register;

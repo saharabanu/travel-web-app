@@ -1,15 +1,44 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../firebase/firebase.auth';
+import toast from "react-hot-toast";
 
 
 const Login = () => {
   const { register, handleSubmit} = useForm();
+  const [
+    signInWithEmailAndPassword,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
 
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+ 
+
+  const onSubmit = async (data) => {
+    try {
+      
+        // Sign in user
+      await signInWithEmailAndPassword(data.email, data.password);
+
+      // The user is now signed in
+      toast.success("User signed in successfully!");
+      
+    } catch (error) {
+      if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+        // Display a specific message for user-not-found or wrong-password errors
+        toast.error("Email or password does not match");
+      } else {
+        // Display a general error message for other errors
+        toast.error("Error signing in:", error.message);
+      }
+    }
+  };
+
+
+
+
   return (
     <>
  <div className="container m-auto max-w-lg ">
@@ -44,7 +73,8 @@ const Login = () => {
               
             </div>
   
-            
+            {error && <p className="text-red-500">{error.code === "auth/user-not-found" ? "User not found" : error.code === "auth/wrong-password" ? "Incorrect password" : error.message}</p>}
+
   
             <input
               type="submit"
