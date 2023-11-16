@@ -4,8 +4,8 @@
 const CommonBanner = () => {
     const currentPath = window.location.pathname;
   return (
-    <div className="h-52 bg-gradient-to-r from-sky-500 to-indigo-500 relative">
-        <div className="absolute flex justify-center items-center max-w-6xl container m-auto pt-20">
+    <div className="h-52 bg-banner-image bg-no-repeat bg-center bg-cover relative">
+        <div className="absolute flex justify-center items-center max-w-6xl container m-auto pt-16">
                  <div className="">
                  <h2 className="text-white text-2xl"> About</h2>
                  <ul className="flex text-white">

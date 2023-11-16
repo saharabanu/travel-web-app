@@ -5,7 +5,7 @@ const Features = () => {
     <div className="pb-20">
         <div className="pt-10 relative">
         <div className="absolute bg-gray-200 top-14 lg:left-[485px] sm:left-80  md:left-[200px]  h-0.5 w-24"></div>
-            <h2 className="text-red-500 text-xl text-center">Features</h2>
+            <h2 className="text-red-500 text-2xl text-center" style={{ fontFamily: "Dancing Script" }}>Features</h2>
             <div className="absolute bg-gray-200 top-14 lg:right-[485px] sm:right-96 md:right-96 h-0.5 w-24"></div>
         </div>
 
