@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-
+import {  useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 
 
 const Login = () => {
+  const navigate = useNavigate()
+
   const { register, handleSubmit} = useForm();
   const [
     signInWithEmailAndPassword,
@@ -24,6 +26,7 @@ const Login = () => {
 
       // The user is now signed in
       toast.success("User signed in successfully!");
+     navigate("/");
       
     } catch (error) {
       if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {

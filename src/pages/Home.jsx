@@ -1,9 +1,13 @@
-
+import Banner from "../components/shared/ui/Banner";
+import Searchbar from "../components/shared/ui/Searchbar";
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div>
+      <Banner/>
+      <Searchbar/>
+    </div>
+  );
+};
 
-export default Home
+export default Home;

@@ -1,11 +1,27 @@
 import { useState } from "react";
 // import avatar from '../../assets/images/sahara-new-rounded.png'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase/firebase.auth';
+import {  signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
+  const [ user, loading ] = useAuthState(auth);
+  const navigate = useNavigate();
+  if (loading) {
+    // You can optionally render a loading indicator here
+    return <div>Loading...</div>;
+  }
+  console.log(user);
+  const logout = () => {
+    signOut(auth);
+    navigate('/login')
+
+  };
 
   return (
-    <nav className="w-full bg-white shadow">
+    <nav className="w-full bg-white shadow sticky top-0">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -82,18 +98,12 @@ const Header = () => {
             </ul>
 
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              <a
-                href="javascript:void(0)"
-                className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-              >
-                Sign in
-              </a>
-              <a
-                href="javascript:void(0)"
-                className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-              >
-                Sign up
-              </a>
+            <a
+            href="/login"
+            className="px-4 py-2 text-black   "
+          >
+            Log in
+          </a>
             </div>
           </div>
         </div>
@@ -106,12 +116,18 @@ const Header = () => {
           >
             <img src={avatar} alt="avatar"  className="w-10 " />
           </a> */}
-          <a
+          {
+            user ? <>
+                 <p>{user?.displayName}</p>
+                 <button onClick={logout} className="border">Log out</button>
+            </> :
+            <a
             href="/login"
             className="px-4 py-2 text-black   "
           >
             Log in
           </a>
+          }
          
         </div>
       </div>
