@@ -106,9 +106,10 @@ const Destination = () => {
 
   return (
     <>
-      <div className="px-6 mt-16 ">
+      <div className="bg-blue-900 mb-10 py-14">
+      <div className="px-16  ">
         <div>
-          <h2 className="font-bold">Destination</h2>
+          <h2 className="font-bold text-white ">Destination</h2>
 
 {/*  input for searching  */}
 
@@ -122,7 +123,7 @@ const Destination = () => {
                 setSearchTerm(e.target.value);
                  
               }}
-              className="px-4 py-2 border rounded mr-2"
+              className="px-4 py-2 border rounded mr-2 mb-5"
             />
           </div>
 
@@ -133,21 +134,21 @@ const Destination = () => {
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3">
           {items?.map((item) =>(<div key={item?.id} >
-            <div className="border">
+            <div className=" rounded-lg shadow-lg">
              <a href={`/destination/${item?.id}`}>
              <img src={item?.img} className="h-36 w-full" alt="img" />
              </a>
               <div className="bg-white px-3 py-5">
                 <p className="text-sm text-gray-400">{item?.location}</p>
-                <h4 className="font-semibold">{item?.title}</h4>
+                <h4 className="font-semibold text-yellow-500 py-2">{item?.title}</h4>
                 <hr />
                 <div className="flex justify-between items-center py-2 ">
                   <p className="text-sm text-gray-400">Starting From</p>
-                  <p className="font-semibold">${item?.price}</p>
+                  <p className="font-semibold text-yellow-500">${item?.price}</p>
                 </div>
                 <button
                   onClick={() => handleBooking(item?.id)}
-                  className="bg-blue-500 text-white px-2 py-1 rounded"
+                  className="bg-blue-900 text-white px-2 py-1 rounded"
                 >
                   Book Now
                 </button>
@@ -156,6 +157,7 @@ const Destination = () => {
           </div>))}
           
         </div>
+      </div>
       </div>
     </>
   );
