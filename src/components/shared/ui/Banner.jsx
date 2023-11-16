@@ -15,7 +15,7 @@ const Banner = () => {
 
         <div className="md:w-1/2  flex flex-col md:flex-row justify-center items-center mt-6 md:mt-0">
           <img src={bannerImg2} className="w-full md:w-72 pr-10 lg:mt-[-154px]" alt="" />
-          <img src={bannerImg1} className="w-full md:w-80 z-1 " alt="" />
+          <img src={bannerImg1} className="w-full md:w-80 z-0 " alt="" />
         </div>
       </div>
     </div>

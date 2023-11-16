@@ -2,7 +2,7 @@
 
 const Searchbar = () => {
   return (
-    <div className="bg-white  m-auto lg:max-w-5xl  container mt-[-200px]  p-10 rounded-lg z-40 opacity-1">
+    <div className="bg-white  m-auto lg:max-w-5xl  container mt-[-200px]  p-10 rounded-lg z-20 ">
        
        <div className=" lg:flex md:flex-row justify-between items-center">
        <div>

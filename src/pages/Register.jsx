@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../firebase/firebase.auth';
 import { updateProfile } from 'firebase/auth';
@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 
 const Register = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [createUserWithEmailAndPassword] =
   useCreateUserWithEmailAndPassword(auth);
@@ -26,6 +27,7 @@ const Register = () => {
       });
 
       toast.success("User registered successfully:", authUser);
+      navigate('/')
     } catch (error) {
       toast.error("This email is already registered:");
     }

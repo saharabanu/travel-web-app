@@ -22,11 +22,18 @@ const Login = () => {
     try {
       
         // Sign in user
-      await signInWithEmailAndPassword(data.email, data.password);
-
+      const res = await signInWithEmailAndPassword(data.email, data.password);
+      
+     
+if(res?.user?.accessToken){
+  toast.success("User signed in successfully!");
+  navigate("/");
+}
+else{
+  toast.error("Your password or email doesn't match")
+}
       // The user is now signed in
-      toast.success("User signed in successfully!");
-     navigate("/");
+     
       
     } catch (error) {
       if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {

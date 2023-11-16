@@ -1,13 +1,15 @@
 import { useState } from "react";
-// import avatar from '../../assets/images/sahara-new-rounded.png'
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../firebase/firebase.auth';
-import {  signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+ import avatar from '../../assets/images/sahara-new-rounded.png'
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase/firebase.auth";
+import { signOut } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { MdOutlineTravelExplore } from "react-icons/md";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
-  const [ user, loading ] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  console.log(user);
   const navigate = useNavigate();
   if (loading) {
     // You can optionally render a loading indicator here
@@ -16,18 +18,22 @@ const Header = () => {
   // console.log(user);
   const logout = () => {
     signOut(auth);
-    navigate('/login')
-
+    navigate("/login");
   };
 
   return (
-    <nav className="w-full bg-white shadow sticky top-0">
+    <nav className="w-full bg-white shadow sticky top-0 z-10">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="javascript:void(0)">
-              <h2 className="text-2xl font-bold text-black">Trisog</h2>
-            </a>
+            <Link to="/">
+              <h2 className="text-2xl font-bold  flex items-center text-yellow-500">
+                <span className="text-yellow-500 pr-1">
+                  <MdOutlineTravelExplore />
+                </span>{" "}
+                Trisog
+              </h2>
+            </Link>
             <div className="md:hidden">
               <button
                 className="p-2 text-white bg-blue-900 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -74,63 +80,34 @@ const Header = () => {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-black hover:text-red-500">
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className="text-black hover:text-red-500">
-                <a href="/about">About</a>
+                <Link to="/about">About</Link>
               </li>
               <li className="text-black hover:text-red-500">
-                <a href="/">Tours</a>
+                <Link to="/">Tours</Link>
               </li>
               <li className="text-black hover:text-red-500">
-                <a href="/">Destination</a>
+                <Link to="/">Destination</Link>
               </li>
-              <li className="text-black hover:text-red-500">
-                <a href="/">Blog</a>
-              </li>
-              <li className="text-black hover:text-red-500">
-                <a href="/">Pages</a>
-              </li>
-              <li className="text-black hover:text-red-500">
-                <a href="/">Contact</a>
-              </li>
-              
             </ul>
-
-            <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-            {/* <input type="text" placeholder="Search" className="bg-gray-500"/> */}
-            <a
-            href="/login"
-            className="px-4 py-2 text-black   "
-          >
-            Log in
-          </a>
-            </div>
           </div>
         </div>
         <div className="hidden space-x-2 md:inline-block ">
-
-        
-          {/* <a
-            href="/"
-            className="px-4 py-2 text-black   "
-          >
-            <img src={avatar} alt="avatar"  className="w-10 " />
-          </a> */}
-          {/* <input type="text" placeholder="Search" className="bg-gray-200 px-2 py-1 rounded outline-none"/> */}
-          {
-            user ? <div className="flex items-center">
-                 <p className="pr-5">{user?.displayName}</p>
-                 <button onClick={logout} className="border bg-yellow-500 px-2 py-1 rounded">Log out</button>
-            </div> :
-            <a
-            href="/login"
-            className="px-4 py-2 text-black   "
-          >
-            Log in
-          </a>
-          }
-         
+          {user ? (
+            <div className="flex items-center">
+              <p className="pr-5">{user?.displayName}</p>
+              <img src={avatar} alt="avatar" className="w-16 pr-5" />
+              <button onClick={logout} className="border bg-yellow-500 px-2 py-1 rounded">
+                Log out
+              </button>
+            </div>
+          ) : (
+            <Link to="/login" className="px-4 py-2 text-black   ">
+              Log in
+            </Link>
+          )}
         </div>
       </div>
     </nav>

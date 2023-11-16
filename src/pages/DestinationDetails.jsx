@@ -42,32 +42,19 @@ const DestinationDetails = () => {
           <h2>{singleData?.price}</h2>
         </div>
       </div>
-<div className="w-36">
-      <Modal
+<div className="">
+      <Modal className='inset-0 border-none px-10 pt-20 mb-20 hover:border-none focus:border-0' style={{inset:'0 !important'}} 
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Video Modal"
       >
-        {/* Add your video component or embed code here */}
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Rcv6bbCm-0k?si=AmX6pYdsbigkzsVn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id" title="Video" frameBorder="0" allowFullScreen></iframe> */}
-        <button className="bg-yellow-500 mt-10 px-2 py-1 rounded text-white" onClick={closeModal}>Close Video</button>
+        
+        <button className="bg-yellow-500 mt-10 px-2 py-1 rounded text-white mb-10" onClick={closeModal}>Close Video</button>
       </Modal>
       </div>
 
-      {/* {isModalOpen && (
-        <Modal closeModal={closeModal}>
-          
-          <iframe
-            width="560"
-            height="315"
-            src='https://www.youtube.com/watch?v=Rcv6bbCm-0k' 
-            title="YouTube video player"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
-        </Modal>
-      )} */}
+      
     </div>
   );
 };
