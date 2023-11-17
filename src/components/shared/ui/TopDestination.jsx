@@ -3,8 +3,14 @@ import uk from "../../../assets/images/uk.jpg";
 import turkey from "../../../assets/images/turkey.jpg";
 import thailand from "../../../assets/images/thailand.jpg";
 import france from "../../../assets/images/france.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const TopDestination = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <div>
       <div className="px-16 py-10">
@@ -17,8 +23,10 @@ const TopDestination = () => {
 
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-2 gap-8">
           <div className="">
-            <div className="">
-              <img src={turkey} alt="" />
+            <div data-aos="fade-up" data-aos-duration="3000">
+              <div className="">
+                <img src={turkey} alt="" className="h-64" />
+              </div>
             </div>
             <div>
               <h2 className="font-bold text-xs py-1">Turkey</h2>
@@ -26,8 +34,10 @@ const TopDestination = () => {
             </div>
           </div>
           <div className="">
-            <div className="">
-              <img src={thailand} alt="" />
+            <div data-aos="fade-up" data-aos-duration="3000">
+              <div className="">
+                <img src={thailand} alt="" className="h-64"  />
+              </div>
             </div>
             <div>
               <h2 className="font-bold text-xs py-1">Thailand</h2>
@@ -35,8 +45,10 @@ const TopDestination = () => {
             </div>
           </div>
           <div className="">
-            <div className="">
-              <img src={france} alt="" />
+            <div data-aos="fade-up" data-aos-duration="3000">
+              <div className="">
+                <img src={france} alt="" className="h-64" />
+              </div>
             </div>
             <div>
               <h2 className="font-bold text-xs py-1">France</h2>
@@ -44,8 +56,10 @@ const TopDestination = () => {
             </div>
           </div>
           <div className="">
-            <div className="">
-              <img src={uk} alt="" />
+            <div data-aos="fade-up" data-aos-duration="3000">
+              <div className="">
+                <img src={uk} alt="" className="h-64" />
+              </div>
             </div>
             <div>
               <h2 className="font-bold text-xs py-1">United Kingdom</h2>
