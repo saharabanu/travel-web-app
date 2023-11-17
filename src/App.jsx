@@ -1,7 +1,11 @@
 import { Toaster } from 'react-hot-toast'
 import './App.css'
 
-import MainLayout from './layouts/MainLayout'
+import MainLayout from './layouts/MainLayout';
+
+
+
+
 const App = () => {
   return (
     <div>

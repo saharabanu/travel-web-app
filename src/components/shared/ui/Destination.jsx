@@ -3,8 +3,32 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase/firebase.auth";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-// import {Swiper, SwiperSlide} from 'swiper/react';
-// import { FreeMode, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from "swiper/modules";
+
+
+
+const breakpoints = {
+  640: {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    
+  },
+  // 576: {
+  //   slidesPerView: 1,
+  //   spaceBetween: 30,
+  // },
+  786: {
+    slidesPerView: 2,
+    spaceBetween: 30,
+    
+  },
+  1024: {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    
+  },
+};
 
 const Destination = () => {
   const [user] = useAuthState(auth);
@@ -41,12 +65,12 @@ const Destination = () => {
   // };
 
   useEffect(() => {
-    // Simulate an asynchronous operation (you can replace it with your actual search logic)
+    
     const searchItems = async () => {
-      // Set searching to true to indicate that search is in progress
+      
       setSearching(true);
 
-      // Fetch data (replace with your actual fetch logic)
+    
       const response = await fetch("/data.json");
       const data = await response.json();
 
@@ -60,7 +84,7 @@ const Destination = () => {
       setSearching(false);
     };
 
-    // Call the searchItems function when the searchTerm changes
+    
     searchItems();
   }, [searchTerm]);
 
@@ -95,6 +119,8 @@ const Destination = () => {
   return (
     <>
       <div className="bg-blue-900 mb-10 py-14">
+
+
         <div className="px-16  ">
           <div>
             <h2 className="font-bold text-white ">Destination</h2>
@@ -116,41 +142,44 @@ const Destination = () => {
             {searching && <p className="mt-4 text-gray-500">Searching...</p>}
           </div>
 
-          <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-2 gap-8" >
-
-
-
-
-
-          {items?.map((item) => (
-              <div key={item?.id}>
-                <div className=" rounded-lg shadow-lg">
-                  <a href={`/destination/${item?.id}`}>
-                    <img src={item?.img} className="h-36 w-full" alt="img" />
-                  </a>
-                  <div className="bg-white px-3 py-5">
-                    <p className="text-sm text-gray-400">{item?.location}</p>
-                    <h4 className="font-semibold text-yellow-500 py-2">{item?.title}</h4>
-                    <hr />
-                    <div className="flex justify-between items-center py-2 ">
-                      <p className="text-sm text-gray-400">Starting From</p>
-                      <p className="font-semibold text-yellow-500">${item?.price}</p>
-                    </div>
-                    <button
-                      onClick={() => handleBooking(item?.id)}
-                      className="bg-blue-900 text-white px-2 py-1 rounded"
-                    >
-                      Book Now
-                    </button>
-                    
-                  </div>
-                </div>
-              </div>
-            ))}
-
-
-
+          <div className="">
+            <Swiper
             
+              slidesPerView={3}
+              spaceBetween={30}
+              freeMode={true}
+              pagination={{
+                clickable: true,
+              }}
+              breakpoints={breakpoints}
+              modules={[FreeMode, Pagination]}
+              className="mySwiper"
+            >
+              {items?.map((item) => (
+                <SwiperSlide key={item?.id}>
+                  <div className=" rounded-lg shadow-lg">
+                    <a href={`/destination/${item?.id}`}>
+                      <img src={item?.img} className="h-36 w-full" alt="img" />
+                    </a>
+                    <div className="bg-white px-3 py-5">
+                      <p className="text-sm text-gray-400">{item?.location}</p>
+                      <h4 className="font-semibold text-yellow-500 py-2">{item?.title}</h4>
+                      <hr />
+                      <div className="flex justify-between items-center py-2 ">
+                        <p className="text-sm text-gray-400">Starting From</p>
+                        <p className="font-semibold text-yellow-500">${item?.price}</p>
+                      </div>
+                      <button
+                        onClick={() => handleBooking(item?.id)}
+                        className="bg-blue-900 text-white px-2 py-1 rounded"
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </div>

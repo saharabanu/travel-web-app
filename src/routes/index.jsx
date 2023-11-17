@@ -7,6 +7,8 @@ import NotFound from "../pages/NotFound";
 import About from "../pages/About";
 import DestinationDetails from "../pages/DestinationDetails";
 
+import Modal1 from "../components/Modal1";
+
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +33,10 @@ const routes = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/modal",
+        element: <Modal1 />,
       },
       {
         path: "/register",
